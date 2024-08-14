@@ -1,0 +1,317 @@
+---
+title: "eds221-session1-day3"
+format: html
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+pinyeon_pine <- 14
+lodgepole_pine <- 46
+
+# some logical expressions
+pinyeon_pine == 10
+pinyeon_pine < lodgepole_pine
+pinyeon_pine != 25
+
+```
+
+```{r}
+# conditionals
+burrito <- 2.4
+
+# write a short if statement
+if (burrito > 2) {
+  print("I love burritos")
+}
+```
+
+```{r}
+# if else statement
+pika <- 80
+
+if (pika > 60) {
+  print("mega pika!")
+} else
+  print("normal pika")
+```
+
+```{r}
+# if else if else statements
+marmot <- -4.8
+
+if (marmot < 0.5) {
+  print("a small marmot")
+} else if (marmot >= 0.5 & marmot < 3) {
+  print("a medium marmot")
+} else
+  print("a large marmot")
+```
+
+```{r}
+# string r
+library(stringr)
+
+my_ships <- c("Millenium Falcon",
+              "X-wing",
+              "Tie-Fighter",
+              "Death Star")
+
+str_detect(my_ships, pattern = "r")
+```
+
+```{r}
+phrase <- "i hate burritos"
+
+if (str_detect(phrase, "love")) {
+  print("burrito fan!")
+}
+```
+
+```{r}
+# switch statements
+
+species <- "mouse"
+
+switch(species,
+       "cat" = print("meow"),
+       "dog" = print("woof"),
+       "mouse" = print("squeak"))
+
+if (species == "cat") {
+  print("meow")
+} else if (species = "dog") {
+  print("woof")
+  else
+    print("sqeak")
+  
+}
+```
+
+```{r}
+# try it with else if statement
+species <- "mouse"
+
+if (species == "cat") {
+  print("meow")
+} else if (species == "dog") {
+  print("woof")
+} else if (species == "mouse")
+    print("squeak")
+
+```
+
+```{r}
+# paste / paste 0 glues together items. 0 for no space
+# for loops
+dog_names <- c("Teddy", "Khora", "Banjo", "Waffle")
+
+for (pupster in dog_names) {
+  print(paste0("My dog's name is ", pupster, "."))
+}
+```
+
+
+```{r}
+# another for loop example
+mass <- seq(from = 0, to = 3, by = 0.5)
+
+# figure out what you want in the body
+mass_1 <- mass[1]
+new_value_1 <- mass[1] + 2
+print(new_value_1)
+
+# put it into a for loop
+for(i in mass) {
+  new_value <- i + 2
+print(new_value)
+}
+```
+
+```{r}
+# another for loop example
+mass <- seq(from = 0, to = 3, by = 0.5)
+for(i in seq_along(mass)) {
+  new_value <- mass[i] + 2
+  print(new_value)
+}
+```
+
+```{r}
+# for loops with conditionals
+
+tree_height <- c(1,2,6,10)
+
+# figure out the body
+tree_height[1] + tree_height[2]
+## can we write an expression?
+i <- 1
+tree_height[i] + tree_height[i + 1]
+
+# write for statement
+## seq_along = 1:length(tree_height)
+for(i in seq_along(tree_height)) {
+  new_value <- tree_height[i] + tree_height[i + 1]
+  print(new_value)
+}
+
+```
+
+```{r}
+# for loops with conditionals
+
+animal <- c("cat", "dog", "dog", "zebra", "dog")
+
+for(i in seq_along(animal)) {
+  if (animal[i] == "dog") {
+  print("I love dogs")
+} else
+  print("This is not a dog")
+}
+```
+
+```{r}
+# another conditional for loop example
+species <- c("dog", "elephant", "goat", "dog", "dog", "elephant")
+
+age_human <- c(3, 8, 4, 6, 12, 18)
+
+# condtl exp
+
+if(species[1] == "dog") {
+  animal_age <- age_human[1] * 7
+} else if(species[1] == "elephant") {
+  animal_age <- age_human[1] * 0.88
+} else if (species[1] == "goat") {
+  animal_age <- age_human[1] * 4.7
+}
+
+# put into for loop
+for(i in seq_along(species)) {
+  if(species[i] == "dog") {
+  animal_age <- age_human[i] * 7
+} else if(species[i] == "elephant") {
+  animal_age <- age_human[i] * 0.88
+} else if (species[i] == "goat") {
+  animal_age <- age_human[i] * 4.7
+}
+  print(animal_age)
+}
+```
+
+```{r}
+# storing for loop output
+
+species <- c("dog", "elephant", "goat", "dog", "dog", "elephant")
+
+## create an empty vector for animal ages
+animal_ages <- vector(mode = "numeric", length = length(species))
+
+# re write previous for loop - species has to be before animal ages
+
+species <- c("dog", "elephant", "goat", "dog", "dog", "elephant")
+
+age_human <- c(3, 8, 4, 6, 12, 18)
+
+for(i in seq_along(species)) {
+  if(species[i] == "dog") {
+  animal_age <- age_human[i] * 7
+} else if(species[i] == "elephant") {
+  animal_age <- age_human[i] * 0.88
+} else if (species[i] == "goat") {
+  animal_age <- age_human[i] * 4.7
+}
+  animal_ages[i] <- animal_age
+}
+
+# check it!
+animal_ages
+```
+
+```{r}
+# another storing output example
+tigers <- c(29, 34, 82)
+lions <- c(2, 18, 6)
+
+### make a vector
+big_cats <- vector(mode = "numeric", length = length(tigers))
+
+## write the body
+total_cats <- tigers[i] + lions[i]
+
+for(i in seq_along(tigers)) {
+  total_cats <- tigers[i] + lions[i]
+  big_cats[i] <- total_cats
+}
+# check it
+total_cats
+big_cats
+```
+
+Interactive Session 2
+
+```{r}
+mtcars
+# all values in second column as values
+mtcars[,2]
+class(mtcars[,2])
+# all values as a df
+mtcars[2]
+# as a vector of values; numeric
+mtcars[[2]]
+```
+
+```{r}
+# create empty vector
+mean_mtcars <- vector(mode = "numeric", length = ncol(mtcars))
+
+## create for loop
+for(i in 1:ncol(mtcars)) {
+  mean_value <- mean(mtcars[[i]], na.rm = TRUE)
+  mean_mtcars[i] <- mean_value
+}
+
+# calc mean for every col
+mean_value <- mean(mtcars[[1]], na.rm = TRUE)
+mean_mtcars[1] <- mean_value
+```
+
+```{r}
+library(palmerpenguins)
+penguins
+
+for(i in seq_along(penguins)) {
+  if(is.numeric(penguins[[i]])) {
+  penguin_median <- median(penguins[[i]], na.rm = TRUE)
+  print(penguin_median)
+} else {
+  print(("non-numeric column"))
+}
+}
+
+```
+
+```{r}
+# use the apply function to find the mean across columns
+apply(X = mtcars, MARGIN = 2, FUN = mean)
+```
+
+```{r}
+library(tidyverse)
+
+penguins %>%
+  group_by(species) %>%
+  summarise(across(where(is.numeric), mean, na.rm = TRUE))
+
+```
+
+```{r}
+library(purrr)
+
+# returns as list
+map(.x = mtcars, .f = mean)
+
+# returns as data frame
+map_df(.x = mtcars, .f = mean)
+```
+
